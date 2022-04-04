@@ -5,6 +5,8 @@ import numbertheory
 from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import dsa
+from cryptography.hazmat.primitives.asymmetric import ed25519
+
 
 # Key exchange of this work is computed on secp256k1
 
@@ -31,10 +33,8 @@ class User:
 
 
     # User generate signing and verification keys
-    def generate_dsa_key(self, key_size=1024):
-        self.signing_key = dsa.generate_private_key(
-            key_size
-        )
+    def generate_Ed25519_key(self):
+        self.signing_key = ed25519.Ed25519PrivateKey.generate()
         self.verification_key = self.signing_key.public_key()
 
     # User generates a random private number r and a public point value r * G, they will be used for key exchange
@@ -64,8 +64,7 @@ class User:
     # User signs data
     def sign(self, data):
         signature = self.signing_key.sign(
-            transfer_to_bytes(data),
-            hashes.SHA256()
+            transfer_to_bytes(data)
         )
         return signature
 
@@ -87,8 +86,7 @@ def verify(verification_key, data, signature):
     try:
         verification_key.verify(
             signature,
-            transfer_to_bytes(data),
-            hashes.SHA256()
+            transfer_to_bytes(data)
         )
     except cryptography.exceptions.InvalidSignature:
         verify = False

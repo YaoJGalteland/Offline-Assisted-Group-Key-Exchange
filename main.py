@@ -6,7 +6,7 @@ import OAGKE
 pars = {'Server': None, 'Isabel': None, 'Robin': None, 'Rolf': None}
 for participant in pars.keys():
     pars[participant] = OAGKE.User(participant)
-    pars[participant].generate_dsa_key()
+    pars[participant].generate_Ed25519_key()
 
 # Isabel plays as an initiator, Robin and Rolf play as responders
 # Responder can be multiple or single, we show an example with two responders
