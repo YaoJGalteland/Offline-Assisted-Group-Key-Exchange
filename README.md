@@ -1,1 +1,1 @@
-This code implements our paper "Offline Assisted Group Key Exchange" (https://eprint.iacr.org/2018/114.pdf) in Prython.
+This repository implements the Offline Assisted Group Key Exchange Protocol of Boyd et. al. (https://eprint.iacr.org/2018/114.pdf) in Python and C. Miracl library is used in the C implementation, please refer to https://github.com/miracl/MIRACL for installation guide.
