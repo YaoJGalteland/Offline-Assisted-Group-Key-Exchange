@@ -113,6 +113,8 @@ for responder in responders:
 
 for responder in responders:
     if pars[responder].key_confirmation != pars[initiator].key_confirmation or not verifytag:
-        print(responder + ' gets the shared key')
+        print(responder + ' does not gets the shared key')
     else:
-        print(responder + ' gets the shared key')
+        print(responder + ' gets the shared key:')
+        print(pars[responder].derived_key)
+
